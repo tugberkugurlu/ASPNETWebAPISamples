@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Http;
 using System.Web.Security;
@@ -14,8 +16,21 @@ namespace ConnegAlgorithmSample {
 
             GlobalConfiguration.Configuration.Routes.MapHttpRoute(
                 "defaultHttpRoute",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/{controller}"
+            );
+
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.
+                MediaTypeMappings.Add(
+                    new QueryStringMapping(
+                        "format", "json", "application/json"
+                )
+            );
+
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.
+                MediaTypeMappings.Add(
+                    new QueryStringMapping(
+                        "format", "xml", "application/xml"
+                )
             );
         }
    }
