@@ -35,7 +35,7 @@ namespace TugberkUg.Web.Http.Formatters {
             if (type == null)
                 throw new ArgumentNullException("type");
 
-            return true;
+            return isTypeOfIEnumerable(type);
         }
 
         protected override Task OnWriteToStreamAsync(
@@ -54,58 +54,58 @@ namespace TugberkUg.Web.Http.Formatters {
         //private utils
         private void writeStream(Type type, object value, Stream stream, HttpContentHeaders contentHeaders) {
 
-            if (isTypeOfIEnumerable(type)) {
+            //NOTE: We have check the type inside CanWriteType method
+            //If request comes this far, the type is IEnumerable. We are safe.
 
-                Type itemType = type.GetGenericArguments()[0];
+            Type itemType = type.GetGenericArguments()[0];
 
-                using (StringWriter _stringWriter = new StringWriter()) {
+            using (StringWriter _stringWriter = new StringWriter()) {
 
-                    _stringWriter.WriteLine(
-                        string.Join<string>(
-                            ",", itemType.GetProperties().Select(x => x.Name )
-                        )
+                _stringWriter.WriteLine(
+                    string.Join<string>(
+                        ",", itemType.GetProperties().Select(x => x.Name )
+                    )
+                );
+
+                foreach (var obj in (IEnumerable<object>)value) {
+
+                    var vals = obj.GetType().GetProperties().Select(
+                        pi => new { 
+                            Value = pi.GetValue(obj, null)
+                        }
                     );
 
-                    foreach (var obj in (IEnumerable<object>)value) {
+                    string _valueLine = string.Empty;
 
-                        var vals = obj.GetType().GetProperties().Select(
-                            pi => new { 
-                                Value = pi.GetValue(obj, null)
-                            }
-                        );
+                    foreach (var val in vals) {
 
-                        string _valueLine = string.Empty;
+                        if (val.Value != null) {
 
-                        foreach (var val in vals) {
+                            var _val = val.Value.ToString();
 
-                            if (val.Value != null) {
+                            //Check if the value contans a comma and place it in quotes if so
+                            if (_val.Contains(","))
+                                _val = string.Concat("\"", _val, "\"");
 
-                                var _val = val.Value.ToString();
+                            //Replace any \r or \n special characters from a new line with a space
+                            if (_val.Contains("\r"))
+                                _val = _val.Replace("\r", " ");
+                            if (_val.Contains("\n"))
+                                _val = _val.Replace("\n", " ");
 
-                                //Check if the value contans a comma and place it in quotes if so
-                                if (_val.Contains(","))
-                                    _val = string.Concat("\"", _val, "\"");
+                            _valueLine = string.Concat(_valueLine, _val, ",");
 
-                                //Replace any \r or \n special characters from a new line with a space
-                                if (_val.Contains("\r"))
-                                    _val = _val.Replace("\r", " ");
-                                if (_val.Contains("\n"))
-                                    _val = _val.Replace("\n", " ");
+                        } else {
 
-                                _valueLine = string.Concat(_valueLine, _val, ",");
-
-                            } else {
-
-                                _valueLine = string.Concat(string.Empty, ",");
-                            }
+                            _valueLine = string.Concat(string.Empty, ",");
                         }
-
-                        _stringWriter.WriteLine(_valueLine.TrimEnd(','));
                     }
 
-                    using (var streamWriter = new StreamWriter(stream))
-                        streamWriter.Write(_stringWriter.ToString());
+                    _stringWriter.WriteLine(_valueLine.TrimEnd(','));
                 }
+
+                using (var streamWriter = new StreamWriter(stream))
+                    streamWriter.Write(_stringWriter.ToString());
             }
         }
         private bool isTypeOfIEnumerable(Type type) {
