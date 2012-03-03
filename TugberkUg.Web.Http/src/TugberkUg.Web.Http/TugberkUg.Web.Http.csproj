@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="ApiKeyAuthorizer.cs" />
     <Compile Include="Filters\ApiKeyAuthAttribute.cs" />
+    <Compile Include="Filters\ValidationAttribute.cs" />
     <Compile Include="Formatting\CSVMediaTypeFormatter.cs" />
     <Compile Include="Formatting\JsonpMediaTypeFormatter.cs" />
     <Compile Include="Formatting\RouteDataMapping.cs" />

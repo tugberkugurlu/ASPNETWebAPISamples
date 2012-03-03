@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Security;
 using System.Web.SessionState;
+using ConnegAlgorithmSample.Formatting;
 
 namespace ConnegAlgorithmSample {
 
@@ -16,7 +17,9 @@ namespace ConnegAlgorithmSample {
 
             GlobalConfiguration.Configuration.Routes.MapHttpRoute(
                 "defaultHttpRoute",
-                routeTemplate: "api/{controller}"
+                routeTemplate: "api/{controller}.{extension}",
+                defaults: new { },
+                constraints: new { extension = "json|xml" }
             );
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.
@@ -30,6 +33,20 @@ namespace ConnegAlgorithmSample {
                 MediaTypeMappings.Add(
                     new QueryStringMapping(
                         "format", "xml", "application/xml"
+                )
+            );
+
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.
+                MediaTypeMappings.Add(
+                    new RouteDataMapping(
+                        "extension", "json", "application/json"
+                )
+            );
+
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.
+                MediaTypeMappings.Add(
+                    new RouteDataMapping(
+                        "extension", "xml", "application/xml"
                 )
             );
         }

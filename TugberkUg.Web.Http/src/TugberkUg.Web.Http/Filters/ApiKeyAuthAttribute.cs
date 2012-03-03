@@ -38,7 +38,7 @@ namespace TugberkUg.Web.Http.Filters {
         }
 
         /// <summary>
-        /// The comma seperated list of roles which user needs to be in
+        /// The comma seperated list of roles which user needs to be in.
         /// </summary>
         public string Roles {
 
@@ -90,6 +90,8 @@ namespace TugberkUg.Web.Http.Filters {
             }
             actionContext.Response = actionContext.ControllerContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
         }
+
+        //private helpers
         private bool skipAuthorization(HttpActionContext actionContext) {
 
 	        return actionContext.ActionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Any<AllowAnonymousAttribute>() || 
