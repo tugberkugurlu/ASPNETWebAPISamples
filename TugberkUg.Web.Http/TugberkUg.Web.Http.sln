@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{424CAE
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TugberkUg.Web.Http.Elmah", "src\TugberkUg.Web.Http.Elmah\TugberkUg.Web.Http.Elmah.csproj", "{746ABE7A-9A6C-4C30-A859-92C2B03FA6EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{2029E11F-A0B0-49D5-979E-913FF91F0B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2029E11F-A0B0-49D5-979E-913FF91F0B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2029E11F-A0B0-49D5-979E-913FF91F0B4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{746ABE7A-9A6C-4C30-A859-92C2B03FA6EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{746ABE7A-9A6C-4C30-A859-92C2B03FA6EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{746ABE7A-9A6C-4C30-A859-92C2B03FA6EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{746ABE7A-9A6C-4C30-A859-92C2B03FA6EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

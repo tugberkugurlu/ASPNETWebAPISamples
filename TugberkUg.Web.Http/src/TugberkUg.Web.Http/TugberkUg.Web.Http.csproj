@@ -70,18 +70,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiKeyAuthorizer.cs" />
+    <Compile Include="Filters\ApiKeyAuthAttribute.cs" />
     <Compile Include="Formatting\CSVMediaTypeFormatter.cs" />
     <Compile Include="Formatting\JsonpMediaTypeFormatter.cs" />
     <Compile Include="Formatting\RouteDataMapping.cs" />
+    <Compile Include="IApiKeyAuthorizer.cs" />
+    <Compile Include="Internal\AuthorizationUtilities.cs" />
     <Compile Include="Internal\FormattingUtilities.cs" />
+    <Compile Include="MessageHandlers\ApiVerificationHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Filters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
