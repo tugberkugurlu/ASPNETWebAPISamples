@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{424CAE
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TugberkUg.Web.Http.Elmah", "src\TugberkUg.Web.Http.Elmah\TugberkUg.Web.Http.Elmah.csproj", "{746ABE7A-9A6C-4C30-A859-92C2B03FA6EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TugberkUg.Web.Http.ElmahIntegration", "src\TugberkUg.Web.Http.ElmahIntegration\TugberkUg.Web.Http.ElmahIntegration.csproj", "{746ABE7A-9A6C-4C30-A859-92C2B03FA6EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

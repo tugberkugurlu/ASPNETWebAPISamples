@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TugberkUg.Web.Http")]
+[assembly: AssemblyTitle("TugberkUg.Web.Http.ElmahIntegration")]
 [assembly: AssemblyDescription("TugberkUg's Library For ASP.NET Web API Elmah Integration")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Tugberk Ugurlu")]
-[assembly: AssemblyProduct("TugberkUg.Web.Http")]
+[assembly: AssemblyProduct("TugberkUg.Web.Http.ElmahIntegration")]
 [assembly: AssemblyCopyright("Copyright © Tugberk Ugurlu 2012")]
 [assembly: AssemblyTrademark("Tugberk Ugurlu")]
 [assembly: AssemblyCulture("")]
