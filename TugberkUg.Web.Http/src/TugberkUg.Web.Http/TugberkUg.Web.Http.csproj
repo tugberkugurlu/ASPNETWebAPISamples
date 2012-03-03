@@ -72,12 +72,15 @@
   <ItemGroup>
     <Compile Include="Formatting\CSVMediaTypeFormatter.cs" />
     <Compile Include="Formatting\JsonpMediaTypeFormatter.cs" />
-    <Compile Include="Formatting\RouteDataMediaTypeMapping.cs" />
+    <Compile Include="Formatting\RouteDataMapping.cs" />
     <Compile Include="Internal\FormattingUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Filters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
