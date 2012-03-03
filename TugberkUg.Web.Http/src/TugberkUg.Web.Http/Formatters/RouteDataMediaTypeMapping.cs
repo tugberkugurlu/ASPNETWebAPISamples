@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace TugberkUg.Web.Http.Formatters {
 
-    class RouteDataMediaTypeMapping : MediaTypeMapping {
+    public class RouteDataMediaTypeMapping : MediaTypeMapping {
 
         private readonly string _routeDataValueName;
         private readonly string _routeDataValueValue;
