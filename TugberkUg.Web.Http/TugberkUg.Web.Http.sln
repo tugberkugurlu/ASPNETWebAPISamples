@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{424CAE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TugberkUg.Web.Http.ElmahIntegration", "src\TugberkUg.Web.Http.ElmahIntegration\TugberkUg.Web.Http.ElmahIntegration.csproj", "{746ABE7A-9A6C-4C30-A859-92C2B03FA6EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiKeyAuthAttributeSample", "src\samples\ApiKeyAuthAttributeSample\ApiKeyAuthAttributeSample.csproj", "{77447A40-7E00-49AC-BCC6-80070709AD1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{746ABE7A-9A6C-4C30-A859-92C2B03FA6EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{746ABE7A-9A6C-4C30-A859-92C2B03FA6EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{746ABE7A-9A6C-4C30-A859-92C2B03FA6EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77447A40-7E00-49AC-BCC6-80070709AD1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77447A40-7E00-49AC-BCC6-80070709AD1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77447A40-7E00-49AC-BCC6-80070709AD1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77447A40-7E00-49AC-BCC6-80070709AD1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

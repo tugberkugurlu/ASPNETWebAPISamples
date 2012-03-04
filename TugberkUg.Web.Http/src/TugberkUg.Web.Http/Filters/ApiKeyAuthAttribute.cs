@@ -18,24 +18,12 @@ namespace TugberkUg.Web.Http.Filters {
     /// </summary>
     public class ApiKeyAuthAttribute : AuthorizationFilterAttribute {
 
-        private string _apiKeyQueryParameter;
+        private const string _apiKeyAuthorizerMethodName = "IsAuthorized";
+
+        private readonly string _apiKeyQueryParameter;
         private string _roles;
-        private readonly IApiKeyAuthorizer _apiKeyAuthorizer;
+        private readonly Type _apiKeyAuthorizerType;
         private string[] _rolesSplit = AuthorizationUtilities._emptyArray;
-
-        /// <summary>
-        /// The name of the query string parameter whose value needs to be compared against.
-        /// </summary>
-        public string ApiKeyQueryParameter {
-
-            get {
-                return _apiKeyQueryParameter;
-
-            } set { 
-
-                this._apiKeyQueryParameter = value;
-            }
-        }
 
         /// <summary>
         /// The comma seperated list of roles which user needs to be in.
@@ -53,21 +41,32 @@ namespace TugberkUg.Web.Http.Filters {
             }
         }
 
-        public ApiKeyAuthAttribute(string apiKeyQueryParameter, IApiKeyAuthorizer apiKeyAuthorizer) {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="apiKeyQueryParameter">The name of the query string parameter whose value needs to be compared against.</param>
+        /// <param name="apiKeyAuthorizerType">Type of Api Key Authorizer which implements TugberkUg.Web.Http.IApiKeyAuthorizer</param>
+        public ApiKeyAuthAttribute(string apiKeyQueryParameter, Type apiKeyAuthorizerType) {
 
             if (string.IsNullOrEmpty(apiKeyQueryParameter))
                 throw Error.ArgumentNull("apiKeyQueryParameter");
 
-            if (apiKeyAuthorizer == null)
-                throw Error.ArgumentNull("apiKeyAuthorizer");
+            if (apiKeyAuthorizerType == null)
+                throw Error.ArgumentNull("apiKeyAuthorizerType");
+
+            if (!isTypeOfIApiKeyAuthorizer(apiKeyAuthorizerType)) {
+
+                throw Error.Argument(
+                    string.Format(
+                        "{0} type has not implemented the TugberkUg.Web.Http.IApiKeyAuthorizer interface",
+                        apiKeyAuthorizerType.ToString()
+                    ),
+                    "apiKeyAuthorizerType"
+                );
+            }
 
             _apiKeyQueryParameter = apiKeyQueryParameter;
-            _apiKeyAuthorizer = apiKeyAuthorizer;
-        }
-        public ApiKeyAuthAttribute(string apiKeyQueryParameter, string roles, IApiKeyAuthorizer apiKeyAuthorizer)
-            : this(apiKeyQueryParameter, apiKeyAuthorizer) {
-
-            _roles = roles;
+            _apiKeyAuthorizerType = apiKeyAuthorizerType;
         }
 
         public override void OnAuthorization(System.Web.Http.Controllers.HttpActionContext actionContext) {
@@ -82,6 +81,10 @@ namespace TugberkUg.Web.Http.Filters {
                 HandleUnauthorizedRequest(actionContext);
         }
 
+        /// <summary>
+        /// Handles the operation on an unauthorized situation
+        /// </summary>
+        /// <param name="actionContext"></param>
         protected virtual void HandleUnauthorizedRequest(HttpActionContext actionContext) {
 
             if (actionContext == null) {
@@ -92,6 +95,16 @@ namespace TugberkUg.Web.Http.Filters {
         }
 
         //private helpers
+        private bool isTypeOfIApiKeyAuthorizer(Type type) {
+
+            foreach (Type interfaceType in type.GetInterfaces()) {
+
+                if (interfaceType == typeof(IApiKeyAuthorizer))
+                    return true;
+            }
+
+            return false;
+        }
         private bool skipAuthorization(HttpActionContext actionContext) {
 
 	        return actionContext.ActionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Any<AllowAnonymousAttribute>() || 
@@ -101,10 +114,25 @@ namespace TugberkUg.Web.Http.Filters {
 
             var apiKey = HttpUtility.ParseQueryString(request.RequestUri.Query)[_apiKeyQueryParameter];
 
-            return (
-                string.IsNullOrEmpty(apiKey) && 
-                (_rolesSplit == AuthorizationUtilities._emptyArray) ? _apiKeyAuthorizer.IsAuthorized(apiKey) : _apiKeyAuthorizer.IsAuthorized(apiKey, _rolesSplit)
-            );
+            return isAuthorized(apiKey);
+        }
+        private bool isAuthorized(string apiKey) {
+
+            object apiKeyAuthorizerClassInstance = Activator.CreateInstance(_apiKeyAuthorizerType);
+            object result = null;
+
+            if (_rolesSplit == AuthorizationUtilities._emptyArray) {
+
+                result = _apiKeyAuthorizerType.GetMethod(_apiKeyAuthorizerMethodName, new Type[] { typeof(string) }).
+                    Invoke(apiKeyAuthorizerClassInstance, new object[] { apiKey });
+
+            } else {
+
+                result = _apiKeyAuthorizerType.GetMethod(_apiKeyAuthorizerMethodName, new Type[] { typeof(string), typeof(string[]) }).
+                    Invoke(apiKeyAuthorizerClassInstance, new object[] { apiKey, _rolesSplit });
+            }
+
+            return (bool)result;
         }
     }
 
