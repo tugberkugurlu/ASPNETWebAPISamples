@@ -42,7 +42,7 @@ namespace ApiKeyAuthAttributeSample.Infrastructure {
         public bool IsAuthorized(string apiKey, string[] roles) {
 
             if(_validApiUsers.Any(x => 
-                x.ApiKey == apiKey && x.Roles.Where(r => roles.Contains(r.Name)).Count() > 0)) {
+                x.ApiKey == apiKey && x.Roles != null && x.Roles.Any(r => roles.Contains(r.Name)))) {
 
                 return true;
             }
