@@ -75,6 +75,7 @@
     <Compile Include="Filters\ValidationAttribute.cs" />
     <Compile Include="Formatting\CSVMediaTypeFormatter.cs" />
     <Compile Include="Formatting\JsonpMediaTypeFormatter.cs" />
+    <Compile Include="Formatting\PlainTextFormatter.cs" />
     <Compile Include="Formatting\RouteDataMapping.cs" />
     <Compile Include="IApiKeyAuthorizer.cs" />
     <Compile Include="Internal\AuthorizationUtilities.cs" />
