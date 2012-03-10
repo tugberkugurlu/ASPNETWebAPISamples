@@ -90,6 +90,7 @@
     <Compile Include="LoggingFormatterSelector.cs" />
     <Compile Include="MessageHandlers\ApiVerificationHandler.cs" />
     <Compile Include="MessageHandlers\IWantJSONDammit.cs" />
+    <Compile Include="MessageHandlers\TraceLoggingHandler.cs" />
     <Compile Include="MessageHandlers\UriExtensionMapping.cs" />
     <Compile Include="MessageHandlers\UriExtensionMappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

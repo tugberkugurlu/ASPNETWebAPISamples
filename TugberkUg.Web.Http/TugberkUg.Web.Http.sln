@@ -17,12 +17,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemoryDomainModel", "src\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{8D3260D5-3FE7-445A-82A4-563632FE6438}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TugberkUg.Web.Http.Tests", "src\tests\TugberkUg.Web.Http.Tests\TugberkUg.Web.Http.Tests.csproj", "{1E5C5E76-88F8-4977-9314-805071360700}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4D6E00A0-E0C1-4810-951D-5D3172C6750A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E5C5E76-88F8-4977-9314-805071360700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E5C5E76-88F8-4977-9314-805071360700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E5C5E76-88F8-4977-9314-805071360700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E5C5E76-88F8-4977-9314-805071360700}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2029E11F-A0B0-49D5-979E-913FF91F0B4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2029E11F-A0B0-49D5-979E-913FF91F0B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2029E11F-A0B0-49D5-979E-913FF91F0B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -44,6 +52,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{1E5C5E76-88F8-4977-9314-805071360700} = {4D6E00A0-E0C1-4810-951D-5D3172C6750A}
 		{77447A40-7E00-49AC-BCC6-80070709AD1A} = {8D3260D5-3FE7-445A-82A4-563632FE6438}
 		{D56AE5B1-4882-44C4-8097-B58DE0F4506C} = {8D3260D5-3FE7-445A-82A4-563632FE6438}
 	EndGlobalSection
