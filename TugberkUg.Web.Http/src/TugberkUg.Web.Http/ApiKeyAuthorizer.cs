@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TugberkUg.Web.Http {
 
-    public class ApiKeyAuthorizer : IApiKeyAuthorizer {
+    internal class ApiKeyAuthorizer : IApiKeyAuthorizer {
 
         public bool IsAuthorized(string apiKey) {
 

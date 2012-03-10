@@ -6,7 +6,7 @@ using System.Text;
 
 namespace TugberkUg.Web.Http.MessageHandlers {
 
-    public class ApiVerificationHandler : DelegatingHandler {
+    internal class ApiVerificationHandler : DelegatingHandler {
 
         protected override System.Threading.Tasks.Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, 
             System.Threading.CancellationToken cancellationToken) {

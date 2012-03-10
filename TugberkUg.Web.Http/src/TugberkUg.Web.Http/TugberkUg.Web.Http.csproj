@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -71,17 +74,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiKeyAuthorizer.cs" />
+    <Compile Include="Extensions\FormatterCollectionExtensions.cs" />
+    <Compile Include="Extensions\UriExtensionMappingExtensions.cs" />
     <Compile Include="Filters\ApiKeyAuthAttribute.cs" />
     <Compile Include="Filters\ValidationAttribute.cs" />
+    <Compile Include="Filters\RequireHttpsWebApiAttribute.cs" />
     <Compile Include="Formatting\CSVMediaTypeFormatter.cs" />
+    <Compile Include="Formatting\JsonNetFormatter.cs" />
     <Compile Include="Formatting\JsonpMediaTypeFormatter.cs" />
     <Compile Include="Formatting\PlainTextFormatter.cs" />
     <Compile Include="Formatting\RouteDataMapping.cs" />
     <Compile Include="IApiKeyAuthorizer.cs" />
     <Compile Include="Internal\AuthorizationUtilities.cs" />
     <Compile Include="Internal\FormattingUtilities.cs" />
+    <Compile Include="LoggingFormatterSelector.cs" />
     <Compile Include="MessageHandlers\ApiVerificationHandler.cs" />
+    <Compile Include="MessageHandlers\IWantJSONDammit.cs" />
+    <Compile Include="MessageHandlers\UriExtensionMapping.cs" />
+    <Compile Include="MessageHandlers\UriExtensionMappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleObjectContent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
