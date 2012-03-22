@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
@@ -20,7 +21,6 @@ namespace TugberkUg.Web.Http.Formatting {
         }
         public CSVMediaTypeFormatter(MediaTypeMapping mediaTypeMapping) : this() {
 
-            //MediaTypeMappings.Add(new RouteDataMediaTypeMapping("extension", "csv", new MediaTypeHeaderValue("text/csv")));
             MediaTypeMappings.Add(mediaTypeMapping);
         }
         public CSVMediaTypeFormatter(IEnumerable<MediaTypeMapping> mediaTypeMappings) : this() {
@@ -111,8 +111,7 @@ namespace TugberkUg.Web.Http.Formatting {
 
             foreach (Type interfaceType in type.GetInterfaces()) {
 
-                if (interfaceType.IsGenericType &&
-                        interfaceType.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+                if (interfaceType == typeof(IEnumerable))
                     return true;
             }
 

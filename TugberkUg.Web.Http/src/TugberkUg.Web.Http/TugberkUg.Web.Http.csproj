@@ -93,6 +93,7 @@
     <Compile Include="MessageHandlers\TraceLoggingHandler.cs" />
     <Compile Include="MessageHandlers\UriExtensionMapping.cs" />
     <Compile Include="MessageHandlers\UriExtensionMappings.cs" />
+    <Compile Include="MessageHandlers\UriFormatExtensionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleObjectContent.cs" />
   </ItemGroup>

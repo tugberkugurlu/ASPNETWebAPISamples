@@ -12,6 +12,7 @@ namespace TugberkUg.Web.Http.MessageHandlers {
             this.AddMapping("proto", "application/x-protobuf");
             this.AddMapping("png", "image/png");
             this.AddMapping("jpg", "image/jpg");
+            this.AddMapping("csv", "text/csv");
         }
     }
 }
