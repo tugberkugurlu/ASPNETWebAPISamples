@@ -15,11 +15,13 @@ namespace SampleAPI.Client {
 
             using (HttpClient client = new HttpClient()) {
 
-                var response = await client.GetAsync(ApiUri).ConfigureAwait(continueOnCapturedContext: false);
+                var response = await client.GetAsync(ApiUri)
+                    .ConfigureAwait(continueOnCapturedContext: false);
 
                 // Note the best way to handle it but will do the work for demo purposes
                 response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsAsync<IEnumerable<Car>>().ConfigureAwait(continueOnCapturedContext: false);
+                return await response.Content.ReadAsAsync<IEnumerable<Car>>()
+                    .ConfigureAwait(continueOnCapturedContext: false);
             }
         }
 
