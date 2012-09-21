@@ -5,6 +5,7 @@ sql
 *.user
 *.suo
 packages
+@Trash
 _ReSharper*
 dist
 output

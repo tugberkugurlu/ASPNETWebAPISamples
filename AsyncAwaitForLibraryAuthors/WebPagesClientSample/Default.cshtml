@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Home Page";
+
+    SampleAPI.Client.SampleAPIClient client = new SampleAPI.Client.SampleAPIClient();
+    var cars = client.GetCarsAsync().Result;
+}
+
+<h3>Cars List</h3>
+
+<ul>
+    @foreach (var car in cars) {
+        <li>
+            @car.Make, @car.Model (@car.Year) - @car.Price.ToString("C")
+        </li>    
+    }
+</ul>

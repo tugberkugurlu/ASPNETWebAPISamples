@@ -1,0 +1,14 @@
+﻿@model IEnumerable<SampleAPI.Client.Car>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h3>Cars List</h3>
+
+<ul>
+    @foreach (var car in Model) {
+        <li>
+            @car.Make, @car.Model (@car.Year) - @car.Price.ToString("C")
+        </li>    
+    }
+</ul>
