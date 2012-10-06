@@ -30,7 +30,6 @@ namespace ComplexTypeParamActionSelection.Controllers {
     [InvalidModelStateFilter]
     public class CarsController : ApiController {
 
-        [UriParameters("CategoryId", "Page", "Take")]
         public string[] GetCarsByCategoryId(
             [FromUri]CarsByCategoryRequestCommand cmd) {
 
@@ -41,7 +40,6 @@ namespace ComplexTypeParamActionSelection.Controllers {
             };
         }
 
-        [UriParameters("ColorId", "Page", "Take")]
         public string[] GetCarsByColorId(
             [FromUri]CarsByColorRequestCommand cmd) {
 
