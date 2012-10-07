@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using WebAPIDoodle.Controllers;
+using WebAPIDoodle;
 
 namespace ComplexTypeParamActionSelection.Controllers {
 
@@ -16,6 +16,18 @@ namespace ComplexTypeParamActionSelection.Controllers {
 
         [Range(1, 50)]
         public int Take { get; set; }
+
+        public string UniqueId {
+            
+            get {
+
+                return string.Format("{0}_{1}_{2}",
+                    CategoryId, Page, Take);
+            }
+        }
+
+        [BindingInfo(NoBinding = true)]
+        public string MySuperProperty { get; set; }
     }
 
     public class CarsByColorRequestCommand {
@@ -25,11 +37,24 @@ namespace ComplexTypeParamActionSelection.Controllers {
 
         [Range(1, 50)]
         public int Take { get; set; }
+
+        public string UniqueId {
+
+            get {
+
+                return string.Format("{0}_{1}_{2}",
+                    ColorId, Page, Take);
+            }
+        }
+
+        [BindingInfo(NoBinding = true)]
+        public string MySuperProperty { get; set; }
     }
 
     [InvalidModelStateFilter]
     public class CarsController : ApiController {
 
+        // GET /api/cars?categoryId=23&page=2&take=12
         public string[] GetCarsByCategoryId(
             [FromUri]CarsByCategoryRequestCommand cmd) {
 
@@ -40,6 +65,7 @@ namespace ComplexTypeParamActionSelection.Controllers {
             };
         }
 
+        // GET /api/cars?colorId=23&page=2&take=12
         public string[] GetCarsByColorId(
             [FromUri]CarsByColorRequestCommand cmd) {
 

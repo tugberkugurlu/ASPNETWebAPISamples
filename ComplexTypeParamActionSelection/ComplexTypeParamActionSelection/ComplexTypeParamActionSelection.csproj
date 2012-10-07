@@ -79,20 +79,21 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="WebAPIDoodle, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="WebAPIDoodle, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\WebAPIDoodle.1.2.1-pre01\lib\net40\WebAPIDoodle.dll</HintPath>
+      <HintPath>..\packages\WebAPIDoodle.1.2.2\lib\net40\WebAPIDoodle.dll</HintPath>
     </Reference>
-    <Reference Include="WebAPIDoodle.Formatting, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="WebAPIDoodle.Formatting, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\WebAPIDoodle.Formatting.1.2.1-pre01\lib\net40\WebAPIDoodle.Formatting.dll</HintPath>
+      <HintPath>..\packages\WebAPIDoodle.Formatting.1.2.2\lib\net40\WebAPIDoodle.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="WebAPIDoodle.Http, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="WebAPIDoodle.Http, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\WebAPIDoodle.Http.1.2.1-pre01\lib\net40\WebAPIDoodle.Http.dll</HintPath>
+      <HintPath>..\packages\WebAPIDoodle.Http.1.2.2\lib\net40\WebAPIDoodle.Http.dll</HintPath>
     </Reference>
-    <Reference Include="WebAPIDoodle.Meta">
-      <HintPath>..\packages\WebAPIDoodle.Meta.1.2.1-pre01\lib\net40\WebAPIDoodle.Meta.dll</HintPath>
+    <Reference Include="WebAPIDoodle.Meta, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebAPIDoodle.Meta.1.2.2\lib\net40\WebAPIDoodle.Meta.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
