@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AuthorizeAttribute Sample</title>
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+
+        <div class="carslist-title">
+            <div class="pull-left">
+                <h1>Car Gallery - Cars List</h1>
+            </div>
+            <div class="pull-right" data-bind="visible: !isAuthorized()">
+                <a href="#" class="icon-lock auth-dialog-invoker"></a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div data-bind="visible: cars().length > 0">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Year</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: cars">
+                    <tr>
+                        <td><span data-bind="text: Id"></span></td>
+                        <td><span data-bind="text: Make"></span></td>
+                        <td><span data-bind="text: Model"></span></td>
+                        <td><span data-bind="text: Year"></span></td>
+                        <td><span data-bind="text: Price"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div data-bind="visible: cars().length === 0">
+            <p>
+                Opps! Sorry, there is no car available to view for you :(
+            </p>
+        </div>
+
+    </div>
+
+    <form action="/api/auth" method="post">
+        <div class="modal fade auth-dialog" id="myModal">
+            <div class="modal-header">
+                <h3>Log In</h3>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="span2">
+                        <strong>User Name: </strong>
+                    </div>
+                    <div class="span4">
+                        <input type="text" name="UserName" id="UserName" class="span4" data-val="true" data-val-required="The UserName field is required." />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span2">
+                        <strong>Password: </strong>
+                    </div>
+                    <div class="span4">
+                        <input type="password" name="Password" id="Password" class="span4" data-val="true" data-val-required="The Password field is required." />
+                    </div>
+                </div>            
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </div>
+        </div>
+    </form>
+
+    <script src="/Scripts/jquery-1.8.0.min.js" type="text/javascript"></script>
+    <script src="Scripts/knockout-2.1.0.js" type="text/javascript"></script>
+    <script src="/Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+    <script src="/Scripts/App/index.js" type="text/javascript"></script>
+</body>
+</html>
