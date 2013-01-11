@@ -24,12 +24,16 @@ namespace AuthorizeAttributeSample.APIs {
         public HttpResponseMessage Post(User user) {
 
             var response = new HttpResponseMessage();
+            var authResult = authService.Authorize(user.UserName, user.Password);
 
-            if (user != null && authService.Authorize(user.UserName, user.Password)) {
+            if (user != null && authResult.Item1) {
 
                 //user has been authorized
                 response.StatusCode = HttpStatusCode.OK;
-                formsAuthService.SignIn(user.UserName, true);
+                formsAuthService.SignIn(
+                    user.UserName, 
+                    true,
+                    authResult.Item2.Roles.Select(x => x.Name).ToArray());
 
                 return response;
             }

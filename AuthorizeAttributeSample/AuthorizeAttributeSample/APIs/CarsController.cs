@@ -14,6 +14,7 @@ namespace AuthorizeAttributeSample.APIs {
 
         private readonly CarsContext _carsContext = new CarsContext();
 
+        [Authorize(Roles = "Admin")]
         public IEnumerable<Car> Get() {
 
             return _carsContext.All;

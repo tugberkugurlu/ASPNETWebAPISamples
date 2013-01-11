@@ -12,18 +12,22 @@ namespace AuthorizeAttributeSample.Services {
             new User { 
                 UserName = "tugberk", 
                 Email = "tugberk@example.com", 
-                Password = "12345678" 
+                Password = "12345678",
+                Roles = new List<Role>() { 
+                    new Role { Name = "Admin" },
+                    new Role { Name = "Employee" },
+                }
             }
         };
 
-        public bool Authorize(string userName, string password) {
+        public Tuple<bool, User> Authorize(string userName, string password) {
 
             var user = users.FirstOrDefault(x => x.UserName == userName);
 
             if (user == null)
-                return false;
+                return new Tuple<bool, User>(false, null);
 
-            return string.Equals(password, user.Password);
+            return new Tuple<bool, User>(string.Equals(password, user.Password), user);
         }
     }
 }
