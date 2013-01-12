@@ -9,10 +9,6 @@ namespace DependencyScopeTracingDisposeBug.Tracing {
 
     public class WebApiTracer : ITraceWriter {
 
-        public WebApiTracer() {
-
-        }
-
         public void Trace(HttpRequestMessage request, string category, TraceLevel level, Action<TraceRecord> traceAction) {
 
             if (level != TraceLevel.Off) {
@@ -26,9 +22,9 @@ namespace DependencyScopeTracingDisposeBug.Tracing {
         private void Log(TraceRecord traceRecord) {
 
             IDependencyScope dependencyScope = traceRecord.Request.GetDependencyScope();
-            ILoggerService loggingService = dependencyScope.GetService(typeof(ILoggerService)) as ILoggerService;
+            ILoggerService loggerService = dependencyScope.GetService(typeof(ILoggerService)) as ILoggerService;
 
-            loggingService.Log(new HttpApiLogRecord {
+            loggerService.Log(new HttpApiLogRecord {
                 CorrelationId = traceRecord.RequestId,
                 RequestUri = traceRecord.Request.RequestUri.ToString(),
                 IpAddress = traceRecord.Request.GetUserHostAddress(),

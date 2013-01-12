@@ -14,12 +14,17 @@ using DependencyScopeTracingDisposeBug.Services;
 using DependencyScopeTracingDisposeBug.MessageHandlers;
 using System.Web.Http.Tracing;
 using DependencyScopeTracingDisposeBug.Tracing;
+using DependencyScopeTracingDisposeBug.Migrations;
+using System.Data.Entity.Migrations;
 
 namespace DependencyScopeTracingDisposeBug {
 
     public class Global : HttpApplication {
 
         protected void Application_Start(object sender, EventArgs e) {
+
+            var efMigrationSettings = new Configuration();
+            new DbMigrator(efMigrationSettings).Update();
 
             var config = GlobalConfiguration.Configuration;
             config.Routes.MapHttpRoute(
@@ -33,7 +38,7 @@ namespace DependencyScopeTracingDisposeBug {
 
             // In order to workaround the IDependencyScope and tracing issue,
             // uncomment the below line.
-            // config.MessageHandlers.Add(new DisposableRequestResourcesReorderHandler());
+            config.MessageHandlers.Add(new DisposableRequestResourcesReorderHandler());
             config.MessageHandlers.Add(new UserHostAddressSetterHandler());
         }
 
