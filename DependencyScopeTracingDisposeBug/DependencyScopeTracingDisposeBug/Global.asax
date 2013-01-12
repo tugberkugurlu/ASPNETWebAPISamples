@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="DependencyScopeTracingDisposeBug.Global" Language="C#" %>
