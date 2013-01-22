@@ -34,19 +34,6 @@ namespace AtomPubSample.Controllers {
             return media;
         }
 
-        public MediaModel PutMedia(string id) {
-
-            MediaModel media;
-            if (!MediaItems.TryGetValue(id, out media)) {
-
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
-
-            // TODO: Update the image here...
-
-            return media;
-        }
-
         public async Task<HttpResponseMessage> PostMedia() { 
 
             //// Check if there is anything inside the message body
@@ -56,7 +43,6 @@ namespace AtomPubSample.Controllers {
                 // Parameter Binding impl.
 
                 // GIANT_NOTE: Don't do this like below at home.
-                HttpContextBase httpContext = Request.Properties["MS_HttpContext"] as HttpContextBase;
                 Guid id = Guid.NewGuid();
                 string contentType = Request.Content.Headers.ContentType.MediaType;
                 string extension = GetExtension(contentType);
@@ -95,6 +81,19 @@ namespace AtomPubSample.Controllers {
             }
 
             return Request.CreateResponse(HttpStatusCode.Conflict);
+        }
+
+        public MediaModel PutMedia(string id) {
+
+            MediaModel media;
+            if (!MediaItems.TryGetValue(id, out media)) {
+
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            // TODO: Update the image here...
+
+            return media;
         }
 
         private string GetExtension(string mimeType) {
