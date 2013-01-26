@@ -32,17 +32,17 @@ namespace ConstructControllerSeperatelySample {
             // builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             // Loggers
-            builder.RegisterType<DbLogger>().Named<ILogger>("DbLogger").InstancePerApiRequest();
-            builder.RegisterType<TraceLogger>().Named<ILogger>("TraceLogger").InstancePerApiRequest();
+            builder.RegisterType<DbLogger>().Keyed<ILogger>(typeof(DbLogger)).InstancePerApiRequest();
+            builder.RegisterType<TraceLogger>().Keyed<ILogger>(typeof(TraceLogger)).InstancePerApiRequest();
 
             // Register controller specifically.
             builder.Register(c => {
-                var logger = c.ResolveNamed<ILogger>("DbLogger");
+                var logger = c.ResolveKeyed<ILogger>(typeof(DbLogger));
                 return new CarsController(logger);
             }).As<CarsController>();
 
             builder.Register(c => {
-                var logger = c.ResolveNamed<ILogger>("TraceLogger");
+                var logger = c.ResolveKeyed<ILogger>(typeof(TraceLogger));
                 return new ValuesController(logger);
             }).As<ValuesController>();
 
