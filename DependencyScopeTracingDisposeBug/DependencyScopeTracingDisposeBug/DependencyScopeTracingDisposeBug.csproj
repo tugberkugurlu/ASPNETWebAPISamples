@@ -116,6 +116,10 @@
     <Compile Include="Migrations\201301121436242_Init.Designer.cs">
       <DependentUpon>201301121436242_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201301130042495_SP_GetRequestBeginEndLogRecords.cs" />
+    <Compile Include="Migrations\201301130042495_SP_GetRequestBeginEndLogRecords.Designer.cs">
+      <DependentUpon>201301130042495_SP_GetRequestBeginEndLogRecords.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\CarContext.cs" />
@@ -138,6 +142,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201301121436242_Init.resx">
       <DependentUpon>201301121436242_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201301130042495_SP_GetRequestBeginEndLogRecords.resx">
+      <DependentUpon>201301130042495_SP_GetRequestBeginEndLogRecords.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
