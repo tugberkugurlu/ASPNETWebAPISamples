@@ -34,6 +34,8 @@ namespace WebApiThinktectureIdentityModel {
             // but GET /api/token works as you are inside the ASP.NET Web API pipeline now.
 
             var auth = new AuthenticationConfiguration { 
+
+                RequireSsl = false,
                 // ClaimsAuthenticationManager = new ClaimsTransformer(),
                 DefaultAuthenticationScheme = "Basic",
                 EnableSessionToken = true // default lifetime is 10 hours
