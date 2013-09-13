@@ -14,8 +14,8 @@ namespace WebApiThinktectureIdentityModel.APIs {
         private readonly CarsContext _carsCtx = new CarsContext();
 	
         // GET /api/cars
-        public IEnumerable<Car> Get() {
-
+        public IEnumerable<Car> Get()
+        {
             return _carsCtx.All;
         }
 
