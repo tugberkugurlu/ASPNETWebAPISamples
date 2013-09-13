@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="HypermediaIntro.Global" Language="C#" %>
