@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -93,21 +94,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="Controllers\StoresController.cs" />
-    <Compile Include="Migrations\201311181123278_init.cs" />
-    <Compile Include="Migrations\201311181123278_init.Designer.cs">
-      <DependentUpon>201311181123278_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201311181149397_init1.cs" />
-    <Compile Include="Migrations\201311181149397_init1.Designer.cs">
-      <DependentUpon>201311181149397_init1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\MyStoreContext.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\Store.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -120,14 +106,11 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201311181123278_init.resx">
-      <DependentUpon>201311181123278_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201311181149397_init1.resx">
-      <DependentUpon>201311181149397_init1.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\AttributeRoutingSample.Core\AttributeRoutingSample.Core.csproj">
+      <Project>{8e694e3a-cb82-466f-ba44-5d912ae712cb}</Project>
+      <Name>AttributeRoutingSample.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -140,16 +123,19 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2020</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:2020/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
+          <UseCustomServer>True</UseCustomServer>
           <CustomServerUrl>
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <servers defaultServer="OwinHost">
+            <server name="OwinHost" exePath="{solutiondir}\packages\OwinHost.2.0.1\tools\OwinHost.exe" cmdArgs="-u {url}" url="http://localhost:12345/" workingDir="{projectdir}" />
+          </servers>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
