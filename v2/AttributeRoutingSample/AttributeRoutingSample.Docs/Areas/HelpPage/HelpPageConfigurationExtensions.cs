@@ -234,7 +234,7 @@ namespace AttributeRoutingSample.Docs.Areas.HelpPage
                 if (!isPrimitive)
                 {
                     IEnumerable<PropertyInfo> publicProperties = from p in parameter.ParameterDescriptor.ParameterType.GetProperties()
-                                     where p.SetMethod.IsPublic
+                                     where p.SetMethod != null && p.SetMethod.IsPublic
                                      select p;
 
                     foreach (PropertyInfo propInfo in publicProperties)
