@@ -250,7 +250,7 @@ namespace AttributeRoutingSample.Docs.Areas.HelpPage
                         {
                             Documentation = documentation,
                             Name = propInfo.Name,
-                            Source = ApiParameterSource.FromBody,
+                            Source = parameter.Source,
                             ParameterDescriptor = parameter.ParameterDescriptor
                         });
                     }

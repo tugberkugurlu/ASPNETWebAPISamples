@@ -14,6 +14,10 @@ namespace AttributeRoutingSample.Controllers
     {
     }
 
+    public interface IRequestCommand
+    {
+    }
+
     public class ProductDto
     {
         public int Id { get; set; }
