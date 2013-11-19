@@ -10,6 +10,10 @@ using System.Web.Http.Description;
 
 namespace AttributeRoutingSample.Controllers
 {
+    public interface IRequestModel
+    {
+    }
+
     public class ProductDto
     {
         public int Id { get; set; }
@@ -17,7 +21,7 @@ namespace AttributeRoutingSample.Controllers
         public string Name { get; set; }
     }
 
-    public abstract class ProductBaseRequestModel
+    public abstract class ProductBaseRequestModel : IRequestModel
     {
         [Required]
         public string Name { get; set; }
@@ -25,6 +29,9 @@ namespace AttributeRoutingSample.Controllers
 
     public class ProductRequestModel : ProductBaseRequestModel
     {
+        /// <summary>
+        /// Foo Bar
+        /// </summary>
         [Required]
         public int? StoreId { get; set; }
     }
