@@ -33,6 +33,9 @@ namespace AttributeRoutingSample.Controllers
     {
     }
 
+    /// <summary>
+    /// Products API endpoints allows you to query, create and delete products.
+    /// </summary>
     public class ProductsController : ApiController
     {
         public readonly MyStoreContext _ctx = new MyStoreContext();
