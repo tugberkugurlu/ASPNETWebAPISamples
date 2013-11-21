@@ -18,7 +18,7 @@ namespace SampleAPI.Client {
                 var response = await client.GetAsync(ApiUri)
                     .ConfigureAwait(continueOnCapturedContext: false);
 
-                // Note the best way to handle it but will do the work for demo purposes
+                // Not the best way to handle it but will do the work for demo purposes
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsAsync<IEnumerable<Car>>()
                     .ConfigureAwait(continueOnCapturedContext: false);
@@ -31,7 +31,7 @@ namespace SampleAPI.Client {
 
                 var response = await client.GetAsync(ApiUri);
 
-                // Note the best way to handle it but will do the work for demo purposes
+                // Not the best way to handle it but will do the work for demo purposes
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsAsync<IEnumerable<Car>>();
             }
