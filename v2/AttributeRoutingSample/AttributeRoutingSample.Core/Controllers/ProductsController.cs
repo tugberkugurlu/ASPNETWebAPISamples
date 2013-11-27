@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -44,6 +45,17 @@ namespace AttributeRoutingSample.Controllers
     {
     }
 
+    public class PaginatedRequestCommand : IRequestCommand
+    {
+        public int Skip { get; set; }
+        public int Take { get; set; }
+    }
+
+    public class ProductsByStatusPaginatedRequestCommand : PaginatedRequestCommand
+    {
+        public string Status { get; set; }
+    }
+
     /// <summary>
     /// Products API endpoints allows you to query, create and delete products.
     /// </summary>
@@ -51,10 +63,26 @@ namespace AttributeRoutingSample.Controllers
     {
         public readonly MyStoreContext _ctx = new MyStoreContext();
 
-        public IEnumerable<ProductDto> GetProducts()
+        /// <summary>
+        /// Gets the paginated products list.
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<ProductDto>> GetProducts(PaginatedRequestCommand cmd)
         {
             IEnumerable<Product> stores = _ctx.Products.ToArray();
-            return stores.Select(x => new ProductDto { Id = x.Id, StoreId = x.StoreId, Name = x.Name });
+            return Task.FromResult(stores.Select(x => new ProductDto { Id = x.Id, StoreId = x.StoreId, Name = x.Name }));
+        }
+
+        /// <summary>
+        /// Gets the paginated product list by status.
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<ProductDto>> GetProducts(ProductsByStatusPaginatedRequestCommand cmd)
+        {
+            IEnumerable<Product> stores = _ctx.Products.ToArray();
+            return Task.FromResult(stores.Select(x => new ProductDto { Id = x.Id, StoreId = x.StoreId, Name = x.Name }));
         }
 
         [ResponseType(typeof(ProductDto))]
