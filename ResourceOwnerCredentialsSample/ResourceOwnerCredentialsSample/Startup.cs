@@ -5,19 +5,24 @@ using Owin;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using System.Security.Claims;
+using System.Net.Http;
 
 namespace ResourceOwnerCredentialsSample
 {
+    public class Foo : DelegatingHandler
+    {
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
+        {
+            return base.SendAsync(request, cancellationToken);
+        }
+    }
+
     public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-            HttpConfiguration config = new HttpConfiguration();
-            WebApiConfig.Register(config);
-            app.UseWebApi(config);
-
             // OAuth Server
-            app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions 
+            app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
             {
                 AllowInsecureHttp = true,
 
@@ -28,6 +33,11 @@ namespace ResourceOwnerCredentialsSample
 
             // Authentication Middleware to bring up the identity of the caller.
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+
+            HttpConfiguration config = new HttpConfiguration();
+            config.MessageHandlers.Add(new Foo());
+            WebApiConfig.Register(config);
+            app.UseWebApi(config);
         }
     }
 
