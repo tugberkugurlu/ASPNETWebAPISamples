@@ -18,10 +18,10 @@ namespace ResourceOwnerCredentialsSample.Tests
         {
             using (TestServer server = TestServer.Create<Startup>())
             {
-                OAuth2Client client = new OAuth2Client(new Uri("http://localhost.fiddler:18008/token"), server.Handler);
+                OAuth2Client client = new OAuth2Client(new Uri("http://whatever:18008/token"), server.Handler);
                 TokenResponse tokenResponse = await client.RequestResourceOwnerPasswordAsync("bob", "bob");
 
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "http://localhost.fiddler:18008/api/cars");
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "http://whatever:18008/api/cars");
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", tokenResponse.AccessToken);
                 HttpResponseMessage response = await server.HttpClient.SendAsync(request);
 
