@@ -8,16 +8,16 @@ namespace TimeoutWithOwinLimits
     {
         public void Configuration(IAppBuilder app)
         {
+            // Limits Middleware...
+            // ref: https://github.com/damianh/LimitsMiddleware
+            app.ConnectionTimeout(TimeSpan.FromSeconds(2));
+
             app.Use(async (ctx, next) =>
             {
                 Trace.TraceInformation("OWIN Entry");
                 await next();
                 Trace.TraceInformation("OWIN Out");
             });
-           
-            // Limits Middleware...
-            // ref: https://github.com/damianh/LimitsMiddleware
-            app.ConnectionTimeout(TimeSpan.FromSeconds(2));
         }
     }
 }
